@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- struts默认是按顺序到匹配到的namespace里搜索action，搜索不到进入默认action -->
+		<default-action-ref name="error"></default-action-ref>
+		<action name="error">
+			<result>/view/error.jsp</result>
+		</action>
+	</package>  
+	
+	<package name="user" namespace="/user" extends="default">
+		<action name="userAction_*" class="cn.com.kid.action.UserAction" method="{1}">
+			<result name="success">/view/user/user_success.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="logout_success" type="redirect">/index.jsp</result>
+		</action>
+	</package>
+</struts>
